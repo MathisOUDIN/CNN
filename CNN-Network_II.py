@@ -31,27 +31,28 @@ x_test *= 2.
 
 # Convert labels (numbers) to categorical vectors
 print (y_train.shape)
-y_train = to_categorical(y_train, num_classes=10)
-y_test = to_categorical(y_test, num_classes=10)
+y_train = to_categorical(y_train, num_classes = 10)
+y_test = to_categorical(y_test, num_classes = 10)
 print (y_train.shape)
 
 # Define our model
 model = Sequential()
-model.add(Conv2D(32, (5, 5), input_shape=(32, 32, 3)))
-model.add(Activation('relu'))
+
+model.add(Conv2D(32, (5, 5), input_shape = (32, 32, 3), activation = 'relu'))
+
 model.add(Flatten())
-model.add(Dense(10, input_shape=(32*32,)))
-model.add(Activation('softmax'))
+
+model.add(Dense(10, input_shape = (32 * 32,), activation='softmax'))
 
 # Compile the model with SGD
-model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer = 'sgd', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
 model.summary()
 
 from keras.callbacks import TensorBoard
-tensorboard = TensorBoard(log_dir='./')
+tensorboard = TensorBoard(log_dir = './')
 
 # Training
-model.fit(x=x_train, y=y_train, validation_data=(x_test, y_test), epochs=20, callbacks=[tensorboard])
+model.fit(x = x_train, y = y_train, validation_data = (x_test, y_test), epochs = 20, callbacks = [tensorboard])
 
 
