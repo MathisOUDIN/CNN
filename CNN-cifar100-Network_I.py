@@ -5,11 +5,11 @@ from keras.utils import to_categorical
 
 import numpy as np
 
-# Import the dataset MNIST
-from keras.datasets import cifar10
+# Import the dataset cifar100
+from keras.datasets import cifar100
 
 # Load the data
-(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+(x_train, y_train), (x_test, y_test) = cifar100.load_data()
 # Show the data size
 print (x_train.shape)
 # The first dimension is the number of samples (6000).
@@ -31,8 +31,8 @@ x_test *= 2.
 
 # Convert labels (numbers) to categorical vectors
 print (y_train.shape)
-y_train = to_categorical(y_train, num_classes = 10)
-y_test = to_categorical(y_test, num_classes = 10)
+y_train = to_categorical(y_train, num_classes = 100)
+y_test = to_categorical(y_test, num_classes = 100)
 print (y_train.shape)
 
 # Define our model
@@ -42,7 +42,7 @@ model.add(Conv2D(32, (5, 5), input_shape = (32, 32, 3), activation = 'relu'))
 
 model.add(Flatten())
 
-model.add(Dense(10, input_shape = (32 * 32,), activation='softmax'))
+model.add(Dense(100, input_shape = (32 * 32,), activation='softmax'))
 
 # Compile the model with SGD
 model.compile(optimizer = 'sgd', loss = 'categorical_crossentropy', metrics = ['accuracy'])
