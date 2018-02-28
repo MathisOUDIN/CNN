@@ -5,7 +5,7 @@ from keras.utils import to_categorical
 
 import numpy as np
 
-# Import the dataset MNIST
+# Import the dataset cifar10
 from keras.datasets import cifar10
 
 # Load the data
